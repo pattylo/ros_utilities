@@ -27,6 +27,8 @@ public:
     Sophus::SE3d posemsg_to_SE3(const geometry_msgs::Pose& pose);
     Sophus::Vector6d twistmsg_to_velo(const geometry_msgs::Twist& odom);
 
+    Sophus::Matrix3d Jacobi3d(const Sophus::SE3d& pose);
+
 
 
 

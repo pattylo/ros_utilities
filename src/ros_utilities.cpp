@@ -128,3 +128,21 @@ Sophus::Vector6d RosUtilities::twistmsg_to_velo(
         twist.angular.z
     ).finished();
 }
+
+Sophus::Matrix3d RosUtilities::Jacobi3d(const Sophus::SE3d& pose)
+{
+    
+    Eigen::Vector3d rpy = q2rpy(pose.unit_quaternion());
+    double phi = rpy(0);
+    double theta = rpy(1);
+    double psi = rpy(2);
+
+    return (
+        Sophus::Matrix3d() <<
+            1, sin(psi)*sin(theta)/cos(theta), cos(phi)*sin(theta)/cos(theta),
+            0, cos(phi), sin(phi),
+            0, sin(phi)/cos(theta), cos(phi)/cos(theta)
+    ).finished();
+}
+
+
