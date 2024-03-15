@@ -129,7 +129,7 @@ Sophus::Vector6d RosUtilities::twistmsg_to_velo(
     ).finished();
 }
 
-Sophus::Matrix3d RosUtilities::Jacobi3d(const Sophus::SE3d& pose)
+Sophus::Matrix3d RosUtilities::Jacobi3dR(const Sophus::SE3d& pose)
 {
     
     Eigen::Vector3d rpy = q2rpy(pose.unit_quaternion());
