@@ -145,4 +145,15 @@ Sophus::Matrix3d RosUtilities::Jacobi3dR(const Sophus::SE3d& pose)
     ).finished();
 }
 
-
+Sophus::Vector6d RosUtilities::imumsg_to_accl(const sensor_msgs::Imu& imu)
+{
+    return(
+        Sophus::Vector6d() <<
+            imu.linear_acceleration.x,
+            imu.linear_acceleration.y,
+            imu.linear_acceleration.z,
+            imu.angular_velocity.x,
+            imu.angular_velocity.y,
+            imu.angular_velocity.z
+    ).finished();
+}
