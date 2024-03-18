@@ -1,4 +1,3 @@
-
 #ifndef ROS_UTILITIES_H
 #define ROS_UTILITIES_H
 
@@ -28,10 +27,6 @@ public:
     Sophus::Vector6d twistmsg_to_velo(const geometry_msgs::Twist& odom);
 
     Sophus::Matrix3d Jacobi3dR(const Sophus::SE3d& pose);
-
-
-
-
 };
 
 #endif // ROS_UTILITIES_H

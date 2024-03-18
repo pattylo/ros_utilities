@@ -52,6 +52,8 @@
 #include <cmath>
 #include <random>
 #include <memory>
+#include <queue>
+#include <mutex>
 
 #include <mavros_msgs/CommandBool.h>
 #include <mavros_msgs/SetMode.h>
@@ -65,6 +67,8 @@
 #include <geometry_msgs/TwistStamped.h>
 #include <mavros_msgs/AttitudeTarget.h>
 #include <nav_msgs/Odometry.h>
+
+#include <sensor_msgs/NavSatFix.h>
 
 #include <sensor_msgs/Imu.h>
 #include <sensor_msgs/image_encodings.h>
@@ -82,7 +86,7 @@
 
 #include <tf/tf.h>
 
-namespace pc
+namespace patty
 {
   enum PRINT_COLOR
   {
@@ -115,28 +119,28 @@ namespace pc
     return os;
   }
 
-  inline void pattyDebug(std::string debug_message)
+  inline void Debug(std::string debug_message)
   {
-      ROS_INFO_STREAM(pc::RED << "DEBUG! -> " << debug_message << pc::ENDCOLOR);
+      ROS_INFO_STREAM(patty::RED << "DEBUG! -> " << debug_message << patty::ENDCOLOR);
       ros::shutdown();
   }
-} //namespace pc
+} //namespace patty
 
-#define ROS_BLACK_STREAM(x)   ROS_INFO_STREAM(pc::BLACK   << x << pc::ENDCOLOR)
-#define ROS_RED_STREAM(x)     ROS_INFO_STREAM(pc::RED     << x << pc::ENDCOLOR)
-#define ROS_GREEN_STREAM(x)   ROS_INFO_STREAM(pc::GREEN   << x << pc::ENDCOLOR)
-#define ROS_YELLOW_STREAM(x)  ROS_INFO_STREAM(pc::YELLOW  << x << pc::ENDCOLOR)
-#define ROS_BLUE_STREAM(x)    ROS_INFO_STREAM(pc::BLUE    << x << pc::ENDCOLOR)
-#define ROS_MAGENTA_STREAM(x) ROS_INFO_STREAM(pc::MAGENTA << x << pc::ENDCOLOR)
-#define ROS_CYAN_STREAM(x)    ROS_INFO_STREAM(pc::CYAN    << x << pc::ENDCOLOR)
+#define ROS_BLACK_STREAM(x)   ROS_INFO_STREAM(patty::BLACK   << x << patty::ENDCOLOR)
+#define ROS_RED_STREAM(x)     ROS_INFO_STREAM(patty::RED     << x << patty::ENDCOLOR)
+#define ROS_GREEN_STREAM(x)   ROS_INFO_STREAM(patty::GREEN   << x << patty::ENDCOLOR)
+#define ROS_YELLOW_STREAM(x)  ROS_INFO_STREAM(patty::YELLOW  << x << patty::ENDCOLOR)
+#define ROS_BLUE_STREAM(x)    ROS_INFO_STREAM(patty::BLUE    << x << patty::ENDCOLOR)
+#define ROS_MAGENTA_STREAM(x) ROS_INFO_STREAM(patty::MAGENTA << x << patty::ENDCOLOR)
+#define ROS_CYAN_STREAM(x)    ROS_INFO_STREAM(patty::CYAN    << x << patty::ENDCOLOR)
 
-#define ROS_BLACK_STREAM_COND(c, x)   ROS_INFO_STREAM_COND(c, pc::BLACK   << x << pc::ENDCOLOR)
-#define ROS_RED_STREAM_COND(c, x)     ROS_INFO_STREAM_COND(c, pc::RED     << x << pc::ENDCOLOR)
-#define ROS_GREEN_STREAM_COND(c, x)   ROS_INFO_STREAM_COND(c, pc::GREEN   << x << pc::ENDCOLOR)
-#define ROS_YELLOW_STREAM_COND(c, x)  ROS_INFO_STREAM_COND(c, pc::YELLOW  << x << pc::ENDCOLOR)
-#define ROS_BLUE_STREAM_COND(c, x)    ROS_INFO_STREAM_COND(c, pc::BLUE    << x << pc::ENDCOLOR)
-#define ROS_MAGENTA_STREAM_COND(c, x) ROS_INFO_STREAM_COND(c, pc::MAGENTA << x << pc::ENDCOLOR)
-#define ROS_CYAN_STREAM_COND(c, x)    ROS_INFO_STREAM_COND(c, pc::CYAN    << x << pc::ENDCOLOR)
+#define ROS_BLACK_STREAM_COND(c, x)   ROS_INFO_STREAM_COND(c, patty::BLACK   << x << patty::ENDCOLOR)
+#define ROS_RED_STREAM_COND(c, x)     ROS_INFO_STREAM_COND(c, patty::RED     << x << patty::ENDCOLOR)
+#define ROS_GREEN_STREAM_COND(c, x)   ROS_INFO_STREAM_COND(c, patty::GREEN   << x << patty::ENDCOLOR)
+#define ROS_YELLOW_STREAM_COND(c, x)  ROS_INFO_STREAM_COND(c, patty::YELLOW  << x << patty::ENDCOLOR)
+#define ROS_BLUE_STREAM_COND(c, x)    ROS_INFO_STREAM_COND(c, patty::BLUE    << x << patty::ENDCOLOR)
+#define ROS_MAGENTA_STREAM_COND(c, x) ROS_INFO_STREAM_COND(c, patty::MAGENTA << x << patty::ENDCOLOR)
+#define ROS_CYAN_STREAM_COND(c, x)    ROS_INFO_STREAM_COND(c, patty::CYAN    << x << patty::ENDCOLOR)
 
 #else
 #endif
