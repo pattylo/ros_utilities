@@ -26,6 +26,7 @@ find_package(catkin COMPONENTS
 find_package(OpenCV REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(Sophus REQUIRED)
+find_package(yaml-cpp REQUIRED)
 
 catkin_package(
     INCLUDE_DIRS include
@@ -57,6 +58,8 @@ target_link_libraries(ros_utilities
     ${catkin_LIBRARIES}
     ${OpenCV_INCLUDE_DIRS}
     ${Sophus_INCLUDE_DIRS}
+    yaml-cpp
 )
+
 
 

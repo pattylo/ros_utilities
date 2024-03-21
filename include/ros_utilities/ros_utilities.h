@@ -2,8 +2,6 @@
 #define ROS_UTILITIES_H
 
 #include "essential.h"
-#include <type_traits>
-
 
 class RosUtilities 
 {
@@ -66,8 +64,14 @@ public:
         return_value /= (data.size() + 1);
     }
 
-    template <typename T_save_data>
-    void write_yaml()
+    template<typename T>
+    void write_yaml(
+        const T& input_data, 
+        const std::string& yaml_filename,
+        const std::string& param_name
+    );
+
+
     
 };
 

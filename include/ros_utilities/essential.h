@@ -86,6 +86,9 @@
 
 #include <tf/tf.h>
 
+#include <yaml-cpp/yaml.h>
+
+
 namespace patty
 {
   enum PRINT_COLOR
@@ -141,6 +144,15 @@ namespace patty
 #define ROS_BLUE_STREAM_COND(c, x)    ROS_INFO_STREAM_COND(c, patty::BLUE    << x << patty::ENDCOLOR)
 #define ROS_MAGENTA_STREAM_COND(c, x) ROS_INFO_STREAM_COND(c, patty::MAGENTA << x << patty::ENDCOLOR)
 #define ROS_CYAN_STREAM_COND(c, x)    ROS_INFO_STREAM_COND(c, patty::CYAN    << x << patty::ENDCOLOR)
+
+#define BLACK_STREAM(x)     std::cout<< patty::BLACK << x << std::endl << patty::ENDCOLOR
+#define RED_STREAM(x)       std::cout<< patty::RED << x << std::endl << patty::ENDCOLOR
+#define GREEN_STREAM(x)     std::cout<< patty::GREEN << x << std::endl << patty::ENDCOLOR
+#define YELLOW_STREAM(x)    std::cout<< patty::YELLOW << x << std::endl << patty::ENDCOLOR
+#define BLUE_STREAM(x)      std::cout<< patty::BLUE << x << std::endl << patty::ENDCOLOR
+#define MAGNETA_STREAM(x)   std::cout<< patty::MAGNETA << x << std::endl << patty::ENDCOLOR
+#define CYAN_STREAM(x)      std::cout<< patty::CYAN << x << std::endl << patty::ENDCOLOR
+
 
 #else
 #endif

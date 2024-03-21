@@ -151,3 +151,45 @@ Sophus::Vector6d RosUtilities::imumsg_to_accl(const sensor_msgs::Imu& imu)
             imu.angular_velocity.z
     ).finished();
 }
+
+// Specialization for Eigen::Vector3d
+template<>
+void RosUtilities::write_yaml(
+    const Eigen::Vector3d& input_data_, 
+    const std::string& yaml_filename_,
+    const std::string& param_name_
+) 
+{
+    YAML::Node yaml_config =  YAML::LoadFile(yaml_filename_);
+
+    for(int i = 0; i < 3; i++)
+        yaml_config[param_name_][i] = input_data_(i);
+    
+
+    std::ofstream yaml_of(yaml_filename_);
+    yaml_of << yaml_config;
+
+    yaml_of.close();
+}
+
+// Specialization for double
+template<>
+void RosUtilities::write_yaml(
+    const double& input_data, 
+    const std::string& yaml_filename,
+    const std::string& param_name
+) 
+{
+    // yaml_config[param_name] = input_data;
+}
+
+// Specialization for int
+template<>
+void RosUtilities::write_yaml(
+    const int& input_data, 
+    const std::string& yaml_filename,
+    const std::string& param_name
+) 
+{
+    // yaml_config[param_name] = input_data;
+}
