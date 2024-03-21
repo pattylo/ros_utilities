@@ -2,6 +2,8 @@
 #define ROS_UTILITIES_H
 
 #include "essential.h"
+#include <type_traits>
+
 
 class RosUtilities 
 {
@@ -28,6 +30,43 @@ public:
     Sophus::Vector6d imumsg_to_accl(const sensor_msgs::Imu& imu);
 
     Sophus::Matrix3d Jacobi3dR(const Sophus::SE3d& pose);
+
+    template <typename T_input, typename T_result>
+    void ComputeMean(const T_input& data, T_result& return_value)
+    // calculate the mean of a vector of vector
+    {
+        assert(!data.empty());
+
+        return_value = std::accumulate(
+            data.begin(), 
+            data.end(), 
+            T_result::Zero().eval(),
+            [](const T_result& accum, const typename T_input::value_type& element) 
+            {
+                return accum + element;
+            }
+        ) / data.size();
+    };
+
+    template <typename T_input, typename T_result>
+    void ComputeVariance(const T_input& data, T_result& return_value)
+    {
+        assert(!data.empty()); 
+
+        // Calculate the mean
+        T_result mean;
+        ComputeMean(data, mean);
+
+        return_value.setZero();
+
+        for (const auto& element : data) {
+            T_result diff = element - mean;
+            return_value += diff.cwiseAbs2().eval(); // Element-wise square
+        }
+
+        return_value /= (data.size() + 1);
+    }
+    
 };
 
 #endif // ROS_UTILITIES_H
