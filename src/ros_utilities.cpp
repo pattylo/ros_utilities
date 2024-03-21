@@ -1,13 +1,7 @@
 #include "ros_utilities/ros_utilities.h"
 
-// my_class.cpp
-
 RosUtilities::RosUtilities() {
-    // Constructor implementation
-}
 
-void RosUtilities::myFunction() {
-    // Function implementation
 }
 
 Eigen::Vector3d RosUtilities::q2rpy(const Eigen::Quaterniond& q)

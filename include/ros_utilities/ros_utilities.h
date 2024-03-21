@@ -8,8 +8,7 @@
 class RosUtilities 
 {
 public:
-    RosUtilities();  // Constructor
-    void myFunction();  // Example member function
+    RosUtilities();
 
     Eigen::Vector3d q2rpy(const Eigen::Quaterniond& q);
     Eigen::Quaterniond rpy2q(const Eigen::Vector3d& rpy);
@@ -66,6 +65,9 @@ public:
 
         return_value /= (data.size() + 1);
     }
+
+    template <typename T_save_data>
+    void write_yaml()
     
 };
 
