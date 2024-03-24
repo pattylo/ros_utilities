@@ -60,6 +60,7 @@
 #include <mavros_msgs/State.h>
 
 #include <std_msgs/Bool.h>
+#include <std_msgs/Float32.h>
 
 #include <geometry_msgs/Point.h>
 #include <geometry_msgs/PointStamped.h>
