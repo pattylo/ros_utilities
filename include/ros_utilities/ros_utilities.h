@@ -11,6 +11,7 @@ public:
     Eigen::Vector3d q2rpy(const Eigen::Quaterniond& q);
     Eigen::Quaterniond rpy2q(const Eigen::Vector3d& rpy);
     Eigen::Vector3d q_rotate_vector(const Eigen::Quaterniond& q, const Eigen::Vector3d& v);
+    Eigen::Vector3d SO3_rotate_vector(const Sophus::SO3d& ROTm, const Eigen::Vector3d& v);
     
     nav_msgs::Odometry SE3_to_odommsg(
         const Sophus::SE3d& pose_on_SE3,

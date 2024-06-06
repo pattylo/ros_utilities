@@ -38,6 +38,14 @@ Eigen::Vector3d RosUtilities::q_rotate_vector(
     return q * v;
 }
 
+Eigen::Vector3d RosUtilities::SO3_rotate_vector(
+    const Sophus::SO3d& ROTm,
+    const Eigen::Vector3d& v
+)
+{
+    return ROTm.matrix() * v;
+}
+
 nav_msgs::Odometry RosUtilities::SE3_to_odommsg(
     const Sophus::SE3d& pose_on_SE3,
     const Sophus::Vector6d& velo,
