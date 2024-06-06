@@ -84,33 +84,6 @@ public:
         const std::string& yaml_filename_,
         const std::string& param_name_
     );
-
-
-    
 };
-
-// // Specialization for Eigen::Vector3d
-// template<>
-// void RosUtilities::write_yaml(
-//     const Eigen::Vector3d& input_data_, 
-//     const std::string& yaml_filename_,
-//     const std::string& param_name_
-// ) 
-// {
-//     YAML::Node yaml_config =  YAML::LoadFile(yaml_filename_);
-
-//     for(int i = 0; i < 3; i++)
-//         yaml_config[param_name_][i] = input_data_(i);
-    
-
-//     std::ofstream yaml_of(yaml_filename_);
-//     yaml_of << yaml_config;
-
-//     yaml_of.close();
-// }
-
-
-
-
 
 #endif // ROS_UTILITIES_H
