@@ -131,6 +131,16 @@ Sophus::Vector6d RosUtilities::twistmsg_to_velo(
     ).finished();
 }
 
+Eigen::Quaterniond RosUtilities::Qmsg_to_Q(const geometry_msgs::Quaternion& Qmsg)
+{
+    return Eigen::Quaterniond(
+        Qmsg.w,
+        Qmsg.x,
+        Qmsg.y,
+        Qmsg.z
+    );
+}
+
 Sophus::Matrix3d RosUtilities::Jacobi3dR(const Sophus::SE3d& pose)
 {
     
