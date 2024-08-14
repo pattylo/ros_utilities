@@ -22,10 +22,16 @@ public:
         const Sophus::SE3d& pose_on_SE3, 
         const std_msgs::Header& msgHeader
     );
+    Eigen::Vector4d SE3_to_flat(
+        const Sophus::SE3d& pose_on_SE3
+    );
 
     Sophus::SE3d posemsg_to_SE3(const geometry_msgs::Pose& pose);
     Sophus::Vector6d twistmsg_to_velo(const geometry_msgs::Twist& twist);
     Sophus::Vector6d imumsg_to_accl(const sensor_msgs::Imu& imu);
+
+    geometry_msgs::Quaternion q2qmsg(const Eigen::Quaterniond q);
+    geometry_msgs::Quaternion rpy2qmsg(const Eigen::Vector3d rpy);
     Eigen::Quaterniond Qmsg_to_Q(const geometry_msgs::Quaternion& Qmsg);
 
     Sophus::Matrix3d Jacobi3dR(const Sophus::SE3d& pose);

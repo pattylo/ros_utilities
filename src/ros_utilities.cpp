@@ -97,6 +97,18 @@ geometry_msgs::PoseStamped RosUtilities::SE3_to_posemsg(
     return returnPoseMsg;
 }
 
+Eigen::Vector4d RosUtilities::SE3_to_flat(
+    const Sophus::SE3d& pose_on_SE3
+)
+{
+    return Eigen::Vector4d(
+        pose_on_SE3.translation().x(),
+        pose_on_SE3.translation().y(),
+        pose_on_SE3.translation().z(),
+        q2rpy(pose_on_SE3.unit_quaternion())(2)
+    );
+}
+
 Sophus::SE3d RosUtilities::posemsg_to_SE3(
     const geometry_msgs::Pose& pose
 )
@@ -168,6 +180,29 @@ Sophus::Vector6d RosUtilities::imumsg_to_accl(const sensor_msgs::Imu& imu)
             imu.angular_velocity.y,
             imu.angular_velocity.z
     ).finished();
+}
+geometry_msgs::Quaternion RosUtilities::q2qmsg(const Eigen::Quaterniond q)
+{
+    geometry_msgs::Quaternion qmsg;
+    qmsg.w = q.w();
+    qmsg.x = q.x();
+    qmsg.y = q.y();
+    qmsg.z = q.z();
+
+    return qmsg;
+}
+
+geometry_msgs::Quaternion RosUtilities::rpy2qmsg(const Eigen::Vector3d rpy)
+{
+    geometry_msgs::Quaternion qmsg;
+    Eigen::Quaterniond q = rpy2q(rpy);
+    
+    qmsg.w = q.w();
+    qmsg.x = q.x();
+    qmsg.y = q.y();
+    qmsg.z = q.z();
+
+    return qmsg;
 }
 
 void RosUtilities::write_yaml(
