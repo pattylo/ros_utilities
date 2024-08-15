@@ -2,11 +2,13 @@
 #define ROS_UTILITIES_H
 
 #include "essential.h"
+#include "RosTopicConfigs.hpp"
 
-class RosUtilities 
+
+class rosUtilities : public RosTopicConfigs
 {
 public:
-    RosUtilities();
+    rosUtilities();
 
     Eigen::Vector3d q2rpy(const Eigen::Quaterniond& q);
     Eigen::Quaterniond rpy2q(const Eigen::Vector3d& rpy);
