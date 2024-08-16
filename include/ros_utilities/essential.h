@@ -1,27 +1,27 @@
 /*
-    This file is part of NICS - the non-robocentric dynamic landing system for quadrotor
+    This file is part of ros_utilities - basic functions for ROS usage
 
-    NICS is free software: you can redistribute it and/or modify
+    ros_utilities is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    NICS is distributed in the hope that it will be useful,
+    ros_utilities is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with NICS.  If not, see <http://www.gnu.org/licenses/>.
+    along with ros_utilities.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
  * \file essential.h
- * \date 28/07/2022
+ * \date 16/03/2024
  * \author pattylo
  * \copyright (c) AIRO-LAB, RCUAS of Hong Kong Polytechnic University
  * \brief frequently used header files of libraries
- */
+*/
 
 #ifndef ESSENTIAL_H
 #define ESSENTIAL_H

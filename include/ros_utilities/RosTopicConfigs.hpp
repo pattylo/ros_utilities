@@ -1,22 +1,22 @@
 /*
-    This file is part of NICS - the non-robocentric dynamic landing system for quadrotor
+    This file is part of ros_utilities - basic functions for ROS usage
 
-    NICS is free software: you can redistribute it and/or modify
+    ros_utilities is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    NICS is distributed in the hope that it will be useful,
+    ros_utilities is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with NICS.  If not, see <http://www.gnu.org/licenses/>.
+    along with ros_utilities.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
- * \file RosTopicConfigs.h
+ * \file RosTopicConfigs.hpp
  * \date 28/11/2022
  * \author pattylo
  * \copyright (c) AIRO-LAB, RCUAS of Hong Kong Polytechnic University
@@ -159,7 +159,7 @@ private:
     ros::NodeHandle nh;
     XmlRpc::XmlRpcValue TOPICLIST;
 
-    void setupTOPICLIST();
+    inline void setupTOPICLIST();
     std::vector<CONFIG_SETUP> object_ConfigLIST;
     
     
@@ -167,17 +167,19 @@ public:
     RosTopicConfigs(ros::NodeHandle& _nh, std::string param_namespace)
     : nh(_nh)
     {
-        nh.getParam(param_namespace + "/TOPICLIST", TOPICLIST);
+        nh.getParam(
+            // param_namespace + 
+            "TOPICLIST", TOPICLIST);
 
         setupTOPICLIST();
     };
     RosTopicConfigs(){};
     ~RosTopicConfigs(){};
 
-    std::string getTopicName(std::string designated_name);
+    inline std::string getTopicName(std::string designated_name);
 };
 
-inline std::string RosTopicConfigs::getTopicName(std::string designated_types)
+std::string RosTopicConfigs::getTopicName(std::string designated_types)
 {
     std::string returnvalue;
 
@@ -198,7 +200,7 @@ inline std::string RosTopicConfigs::getTopicName(std::string designated_types)
     return returnvalue;
 }
 
-inline void RosTopicConfigs::setupTOPICLIST()
+void RosTopicConfigs::setupTOPICLIST()
 {
     CONFIG_SETUP config_setup_temp;
     std::string topic_type;

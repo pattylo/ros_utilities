@@ -1,3 +1,28 @@
+/*
+    This file is part of ros_utilities - basic functions for ROS usage
+
+    ros_utilities is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    ros_utilities is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with ros_utilities.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+/**
+ * \file ros_utilities.h
+ * \date 16/03/2024
+ * \author pattylo
+ * \copyright (c) AIRO-LAB, RCUAS of Hong Kong Polytechnic University
+ * \brief frequently used libraries - cpp
+*/
+
 #include "ros_utilities/ros_utilities.h"
 
 ros_utilities::ros_utilities() {
