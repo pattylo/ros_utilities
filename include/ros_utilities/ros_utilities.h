@@ -5,10 +5,10 @@
 #include "RosTopicConfigs.hpp"
 
 
-class rosUtilities : public RosTopicConfigs
+class ros_utilities : public RosTopicConfigs
 {
 public:
-    rosUtilities();
+    ros_utilities();
 
     Eigen::Vector3d q2rpy(const Eigen::Quaterniond& q);
     Eigen::Quaterniond rpy2q(const Eigen::Vector3d& rpy);

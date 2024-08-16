@@ -1,10 +1,10 @@
 #include "ros_utilities/ros_utilities.h"
 
-rosUtilities::rosUtilities() {
+ros_utilities::ros_utilities() {
 
 }
 
-Eigen::Vector3d rosUtilities::q2rpy(const Eigen::Quaterniond& q)
+Eigen::Vector3d ros_utilities::q2rpy(const Eigen::Quaterniond& q)
 {
     tfScalar yaw, pitch, roll;
     tf::Quaternion q_tf;
@@ -19,7 +19,7 @@ Eigen::Vector3d rosUtilities::q2rpy(const Eigen::Quaterniond& q)
     return Eigen::Vector3d(roll, pitch, yaw);
 }
 
-Eigen::Quaterniond rosUtilities::rpy2q(const Eigen::Vector3d& rpy)
+Eigen::Quaterniond ros_utilities::rpy2q(const Eigen::Vector3d& rpy)
 {
     Eigen::AngleAxisd rollAngle(rpy(0), Eigen::Vector3d::UnitX());
     Eigen::AngleAxisd pitchAngle(rpy(1), Eigen::Vector3d::UnitY());
@@ -30,7 +30,7 @@ Eigen::Quaterniond rosUtilities::rpy2q(const Eigen::Vector3d& rpy)
     return q;
 }
 
-Eigen::Vector3d rosUtilities::q_rotate_vector(
+Eigen::Vector3d ros_utilities::q_rotate_vector(
     const Eigen::Quaterniond& q, 
     const Eigen::Vector3d& v
 )
@@ -38,7 +38,7 @@ Eigen::Vector3d rosUtilities::q_rotate_vector(
     return q * v;
 }
 
-Eigen::Vector3d rosUtilities::SO3_rotate_vector(
+Eigen::Vector3d ros_utilities::SO3_rotate_vector(
     const Sophus::SO3d& ROTm,
     const Eigen::Vector3d& v
 )
@@ -46,7 +46,7 @@ Eigen::Vector3d rosUtilities::SO3_rotate_vector(
     return ROTm.matrix() * v;
 }
 
-nav_msgs::Odometry rosUtilities::SE3_to_odommsg(
+nav_msgs::Odometry ros_utilities::SE3_to_odommsg(
     const Sophus::SE3d& pose_on_SE3,
     const Sophus::Vector6d& velo,
     const std_msgs::Header& msgHeader
@@ -77,7 +77,7 @@ nav_msgs::Odometry rosUtilities::SE3_to_odommsg(
     return returnOdomMsg;
 }
 
-geometry_msgs::PoseStamped rosUtilities::SE3_to_posemsg(
+geometry_msgs::PoseStamped ros_utilities::SE3_to_posemsg(
     const Sophus::SE3d& pose_on_SE3,
     const std_msgs::Header& msgHeader
 )
@@ -97,7 +97,7 @@ geometry_msgs::PoseStamped rosUtilities::SE3_to_posemsg(
     return returnPoseMsg;
 }
 
-Eigen::Vector4d rosUtilities::SE3_to_flat(
+Eigen::Vector4d ros_utilities::SE3_to_flat(
     const Sophus::SE3d& pose_on_SE3
 )
 {
@@ -109,7 +109,7 @@ Eigen::Vector4d rosUtilities::SE3_to_flat(
     );
 }
 
-Sophus::SE3d rosUtilities::posemsg_to_SE3(
+Sophus::SE3d ros_utilities::posemsg_to_SE3(
     const geometry_msgs::Pose& pose
 )
 {
@@ -128,7 +128,7 @@ Sophus::SE3d rosUtilities::posemsg_to_SE3(
     );
 }
 
-Sophus::Vector6d rosUtilities::twistmsg_to_velo(
+Sophus::Vector6d ros_utilities::twistmsg_to_velo(
     const geometry_msgs::Twist& twist
 )
 {
@@ -143,7 +143,7 @@ Sophus::Vector6d rosUtilities::twistmsg_to_velo(
     ).finished();
 }
 
-Eigen::Quaterniond rosUtilities::Qmsg_to_Q(const geometry_msgs::Quaternion& Qmsg)
+Eigen::Quaterniond ros_utilities::Qmsg_to_Q(const geometry_msgs::Quaternion& Qmsg)
 {
     return Eigen::Quaterniond(
         Qmsg.w,
@@ -153,7 +153,7 @@ Eigen::Quaterniond rosUtilities::Qmsg_to_Q(const geometry_msgs::Quaternion& Qmsg
     );
 }
 
-Sophus::Matrix3d rosUtilities::Jacobi3dR(const Sophus::SE3d& pose)
+Sophus::Matrix3d ros_utilities::Jacobi3dR(const Sophus::SE3d& pose)
 {
     
     Eigen::Vector3d rpy = q2rpy(pose.unit_quaternion());
@@ -169,7 +169,7 @@ Sophus::Matrix3d rosUtilities::Jacobi3dR(const Sophus::SE3d& pose)
     ).finished();
 }
 
-Sophus::Vector6d rosUtilities::imumsg_to_accl(const sensor_msgs::Imu& imu)
+Sophus::Vector6d ros_utilities::imumsg_to_accl(const sensor_msgs::Imu& imu)
 {
     return(
         Sophus::Vector6d() <<
@@ -181,7 +181,7 @@ Sophus::Vector6d rosUtilities::imumsg_to_accl(const sensor_msgs::Imu& imu)
             imu.angular_velocity.z
     ).finished();
 }
-geometry_msgs::Quaternion rosUtilities::q2qmsg(const Eigen::Quaterniond q)
+geometry_msgs::Quaternion ros_utilities::q2qmsg(const Eigen::Quaterniond q)
 {
     geometry_msgs::Quaternion qmsg;
     qmsg.w = q.w();
@@ -192,7 +192,7 @@ geometry_msgs::Quaternion rosUtilities::q2qmsg(const Eigen::Quaterniond q)
     return qmsg;
 }
 
-geometry_msgs::Quaternion rosUtilities::rpy2qmsg(const Eigen::Vector3d rpy)
+geometry_msgs::Quaternion ros_utilities::rpy2qmsg(const Eigen::Vector3d rpy)
 {
     geometry_msgs::Quaternion qmsg;
     Eigen::Quaterniond q = rpy2q(rpy);
@@ -205,7 +205,7 @@ geometry_msgs::Quaternion rosUtilities::rpy2qmsg(const Eigen::Vector3d rpy)
     return qmsg;
 }
 
-void rosUtilities::write_yaml(
+void ros_utilities::write_yaml(
     const Eigen::Vector3d& input_data_, 
     const std::string& yaml_filename_,
     const std::string& param_name_
