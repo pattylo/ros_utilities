@@ -167,9 +167,7 @@ public:
     RosTopicConfigs(ros::NodeHandle& _nh, std::string param_namespace)
     : nh(_nh)
     {
-        nh.getParam(
-            // param_namespace + 
-            "TOPICLIST", TOPICLIST);
+        nh.getParam(param_namespace + "/TOPICLIST", TOPICLIST);
 
         setupTOPICLIST();
     };
