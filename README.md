@@ -47,21 +47,23 @@ Within in you executable cpp, just do the following:
 #########################################
 # USE HERE!!!
 #include <ros_utilities/ros_utilities.h> 
-// include many header files, check source file for more.
-static ros_utilities ros_tools;
+// many header files included, check source file for more.
+static std::shared_ptr<ros_utilities> ros_tools_ptr;
 #########################################
 
 int main(int argc, char** argv)
 {
-    ros::init(argc, argv, "data_log");
+    ros::init(argc, argv, "ros_util");
     ros::NodeHandle nh;
+
+    ros_tools_ptr = std::make_shared<ros_utilities>();
 
     // SUB, PUB, and WHATNOT
 
     #########################################
     # USE HERE!!!
     geometry_msgs::PoseStamped ugv_pose;
-    Sophus::SE3d ugvPoseSE3 = ros_tools.posemsg_to_SE3(ugv_pose.pose);
+    Sophus::SE3d ugvPoseSE3 = ros_tools_ptr->posemsg_to_SE3(ugv_pose.pose);
     #########################################
 
     ros::spin();
@@ -89,3 +91,6 @@ class yourClass : public ros_utilities
   // now you can use all the function within this!!!
   #########################################
 }
+```
+### Maintainer
+[Patrick Lo](https://github.com/pattylo) @ AIRo-Lab, RCUAS, PolyU: patty.lo@connect.polyu.hk <br/> 
