@@ -64,7 +64,7 @@ public:
     Sophus::Matrix3d Jacobi3dR(const Sophus::SE3d& pose);
 
     template <typename T_input, typename T_result>
-    void ComputeMean(const T_input& data, T_result& return_value)
+    void ComputeMeanVector(const T_input& data, T_result& return_value)
     // calculate the mean of a vector of vector
     {
         assert(!data.empty());
@@ -80,6 +80,16 @@ public:
         ) / data.size();
     };
 
+    template <typename T_input>
+    void ComputeMeanScalar(const T_input& data, double& return_value)
+    {
+        return_value = std::accumulate(
+            data.begin(),
+            data.end(),
+            0.0
+        ) / data.size();
+    };
+
     template <typename T_input, typename T_result>
     void ComputeVariance(const T_input& data, T_result& return_value)
     {
@@ -87,7 +97,7 @@ public:
 
         // Calculate the mean
         T_result mean;
-        ComputeMean(data, mean);
+        ComputeMeanVector(data, mean);
 
         return_value.setZero();
 
