@@ -4,19 +4,8 @@ This is a personal libraries for ROS packages. Support transformation operation,
 ## Setup
 In ```CMakeLists.txt``` do the following:
 
-Under 
-```
-include_directories(
-  include
-  ${catkin_INCLUDE_DIRS}
+Under ```CMakeLists.txt```
 
-  #########################################
-  # ADD HERE!!!
-  ros_utilities
-  #########################################
-)
-```
-and under 
 ```
 find_package(catkin COMPONENTS
   nodelet
@@ -37,6 +26,32 @@ find_package(catkin COMPONENTS
   # ADD HERE!!!
   ros_utilities
   #########################################
+)
+```
+
+and
+```
+include_directories(
+    include
+
+    #########################################
+    # ADD HERE!!!
+    ${catkin_INCLUDE_DIRS}
+    #########################################
+)
+```
+
+and
+```
+add_executable(
+    lala 
+    src/main.cpp
+)
+target_link_libraries(lala
+    #########################################
+    # ADD HERE!!!
+    ${catkin_LIBRARIES}
+    #########################################
 )
 ```
 

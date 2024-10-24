@@ -23,21 +23,15 @@ find_package(catkin COMPONENTS
   tf
 )
 
-find_package(OpenCV REQUIRED)
+find_package(OpenCV 4 REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(Sophus REQUIRED)
 find_package(yaml-cpp REQUIRED)
 
 catkin_package(
-    INCLUDE_DIRS include
-    LIBRARIES ros_utilities
-
-    CATKIN_DEPENDS 
-    geometry_msgs 
-    mavros_msgs 
-    roscpp
-    std_msgs
-    
+    INCLUDE_DIRS include ${OpenCV_INCLUDE_DIRS} ${Sophus_INCLUDE_DIRS} ${EIGEN3_INCLUDE_DIRS}
+    LIBRARIES ros_utilities ${OpenCV_LIBRARIES} ${Sophus_LIBRARIES} ${EIGEN3_LIBRARIES}
+    CATKIN_DEPENDS geometry_msgs mavros_msgs roscpp std_msgs
 )
 
 set(Sophus_LIBRARIES libSophus.so)
